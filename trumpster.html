@@ -3,12 +3,18 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  <h1>Welcome to Trumpster!</h1>
 
-  {{> hello}}
+  {{#each cards}}
+    {{> card}}
+  {{/each}}
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="card">
+  <div class="playingCards simpleCards">
+    <div class="card rank-{{value}} {{suit}}">
+      <span class="rank">{{value}}</span>
+      <span class="suit"></span>
+    </div>
+  </div>
 </template>
