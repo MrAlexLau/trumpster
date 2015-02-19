@@ -3,18 +3,32 @@
 </head>
 
 <body>
-  <h1>Welcome to Trumpster!</h1>
-
-  {{#each cards}}
-    {{> card}}
-  {{/each}}
+  <div class="board">
+    <div class="player-1 hand">
+      {{#each cards}}
+        {{!-- > otherPlayerCard --}}
+        {{> card}}
+      {{/each}}
+    </div>
+    <div class="player-2 hand">
+      {{#each cards}}
+        {{> card}}
+      {{/each}}
+      </div>
+  </div>
 </body>
 
 <template name="card">
-  <div class="playingCards simpleCards">
-    <div class="card rank-{{value}} {{suit}}">
+  <span class="playingCards simpleCards">
+    <span class="card rank-{{value}} {{suit}}">
       <span class="rank">{{value}}</span>
       <span class="suit"></span>
-    </div>
-  </div>
+    </span>
+  </span>
+</template>
+
+<template name="otherPlayerCard">
+  <span class="playingCards simpleCards">
+    <div class="card back">*</div>
+  </span>
 </template>

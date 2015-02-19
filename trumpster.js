@@ -5,7 +5,7 @@ if (Meteor.isClient) {
 
   Template.body.helpers({
     cards: function () {
-      return Cards.find();
+      return Cards.find({}, {limit: 5});
     }
   });
 
