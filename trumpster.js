@@ -1,11 +1,20 @@
 Cards = new Mongo.Collection('cards');
+player1 = Blaze.ReactiveVar(null);
+player2 = Blaze.ReactiveVar(null);
 
 if (Meteor.isClient) {
   Meteor.subscribe("cards");
 
   Template.body.helpers({
-    cards: function () {
-      return Cards.find({}, {limit: 5});
+    currentPlayersCards: function () {
+      if (player1.get() !== null) {
+        return player1.get().hand;
+      }
+    },
+    otherPlayersCards: function () {
+      if (player2.get() !== null) {
+        return player2.get().hand;
+      }
     }
   });
 
@@ -18,11 +27,16 @@ if (Meteor.isClient) {
     // }
   });
 
-  // TODO: add some events for cards
-  Template.card.events({
+  // TODO: add some real events for cards
+  Template.body.events({
     'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
+      currentGame = new Trumpster.Game();
+      currentGame.dealCards();
+
+      player1.set(currentGame.players[0]);
+      player2.set(currentGame.players[1]);
+      // player2 = Blaze.ReactiveVar(currentGame.players[1]);
+
     }
   });
 }
@@ -33,11 +47,7 @@ if (Meteor.isServer) {
   });
 
   Meteor.startup(function () {
-    // TODO: refactor these into shared object
-    var VALUES = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
-    var SUITS = ['clubs', 'spades', 'hearts', 'diams'];
-
-    // uncomment to delete previous values
+    // // uncomment to delete previous values
     coll = Cards.find().fetch();
     _.each(coll, function(card) {
       Cards.remove(card._id);
@@ -45,12 +55,14 @@ if (Meteor.isServer) {
 
     // seed the cards collection
     if (Cards.find().count() == 0) {
-      _.each(VALUES, function(value) {
-        _.each(SUITS, function(suit) {
+      _.each(Trumpster.CardHelper.VALUES, function(value) {
+        _.each(Trumpster.CardHelper.SUITS, function(suit) {
           Cards.insert({ suit: suit, value: value });
         });
       });
     }
+
+
   });
 
 }

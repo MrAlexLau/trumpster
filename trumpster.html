@@ -3,15 +3,17 @@
 </head>
 
 <body>
+  <button>Start Game!</button>
   <div class="board">
     <div class="player-1 hand">
-      {{#each cards}}
+      {{#each currentPlayersCards}}
+        {{!-- uncomment out below to hide card values --}}
         {{!-- > otherPlayerCard --}}
         {{> card}}
       {{/each}}
     </div>
     <div class="player-2 hand">
-      {{#each cards}}
+      {{#each otherPlayersCards}}
         {{> card}}
       {{/each}}
       </div>
