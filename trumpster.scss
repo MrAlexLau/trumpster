@@ -3,16 +3,24 @@
 $gutter: 15px;
 $board-color: #6FBBF5;
 $board-height: 500px;
+$cardHeight: 100px;
+
+.reloaded {
+  text-align: center;
+}
 
 .board {
   background-color: #6FBBF5;
   border: 2px solid;
   border-radius: 25px;
-  // display: none;
   height: $board-height;
   position: relative;
   padding: $gutter * 2;
   margin-top: $gutter * 2; /* TODO: replace with a gutter sass var */
+}
+
+.center-of-board {
+  height: $cardHeight;
 }
 
 .hand {
@@ -20,16 +28,17 @@ $board-height: 500px;
   width: 100%;
 }
 
-.player-1 {
+.other-player {
   position: absolute;
   top: 0;
 }
 
-.player-2 {
+.current-player {
   bottom: 0;
   position: absolute;
 }
 
-.card {
+.playingCards .card {
   display: inline-block;
+  width: 60px;
 }

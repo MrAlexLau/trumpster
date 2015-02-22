@@ -3,25 +3,34 @@
 </head>
 
 <body>
+  {{> loadNotification}}
   <button>Start Game!</button>
   <div class="board">
-    <div class="player-1 hand">
-      {{#each currentPlayersCards}}
-        {{!-- uncomment out below to hide card values --}}
-        {{!-- > otherPlayerCard --}}
-        {{> card}}
+    <div class="other-player hand">
+      {{#each otherPlayersCards}}
+        {{>  otherPlayer }}
       {{/each}}
     </div>
-    <div class="player-2 hand">
-      {{#each otherPlayersCards}}
-        {{> card}}
+    <div class="current-player hand">
+      {{#each currentPlayersCards}}
+        {{> currentPlayer}}
       {{/each}}
       </div>
   </div>
 </body>
 
-<template name="card">
+<template name="currentPlayer">
   <span class="playingCards simpleCards">
+    <span class="players-cards card rank-{{value}} {{suit}}">
+      <span class="rank">{{value}}</span>
+      <span class="suit"></span>
+    </span>
+  </span>
+</template>
+
+<template name="otherPlayer">
+  <span class="playingCards simpleCards">
+    <!-- <div class="card back">*</div> -->
     <span class="card rank-{{value}} {{suit}}">
       <span class="rank">{{value}}</span>
       <span class="suit"></span>
@@ -29,8 +38,6 @@
   </span>
 </template>
 
-<template name="otherPlayerCard">
-  <span class="playingCards simpleCards">
-    <div class="card back">*</div>
-  </span>
+<template name="loadNotification">
+  <div class="reloaded">Reloaded!</div>
 </template>

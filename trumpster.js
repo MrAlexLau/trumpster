@@ -18,16 +18,26 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.card.helpers({
-    // suit: function () {
-    //   return 'hearts';
-    // },
-    // value: function () {
-    //   return 'A';
-    // }
+  Template.currentPlayer.events({
+    'click .players-cards.card': function (event) {
+      var $card = $($(event.target).parents('.card')),
+          position =  $card.data('position'),
+          amount =  -100 + $card.data('position') * 10,
+          leftAmountStr,
+          movesArray = ['+=170', '+=85', '+=0', '-=85', '-=170'];
+
+      leftAmountStr = movesArray[position];
+
+      $card.animate({top: '-=200', left: leftAmountStr});
+    }
   });
 
-  // TODO: add some real events for cards
+  Template.currentPlayer.rendered = function() {
+    $('.current-player .card').each(function(index) {
+      $(this).data('position', index);
+    });
+  }
+
   Template.body.events({
     'click button': function () {
       currentGame = new Trumpster.Game();
@@ -35,10 +45,12 @@ if (Meteor.isClient) {
 
       player1.set(currentGame.players[0]);
       player2.set(currentGame.players[1]);
-      // player2 = Blaze.ReactiveVar(currentGame.players[1]);
-
     }
   });
+
+  Template.loadNotification.rendered = function() {
+    $('.reloaded').fadeOut(1500);
+  }
 }
 
 if (Meteor.isServer) {
@@ -48,10 +60,10 @@ if (Meteor.isServer) {
 
   Meteor.startup(function () {
     // // uncomment to delete previous values
-    coll = Cards.find().fetch();
-    _.each(coll, function(card) {
-      Cards.remove(card._id);
-    });
+    // coll = Cards.find().fetch();
+    // _.each(coll, function(card) {
+    //   Cards.remove(card._id);
+    // });
 
     // seed the cards collection
     if (Cards.find().count() == 0) {
