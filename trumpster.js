@@ -20,15 +20,10 @@ if (Meteor.isClient) {
 
   Template.currentPlayer.events({
     'click .players-cards.card': function (event) {
-      var $card = $($(event.target).parents('.card')),
-          position =  $card.data('position'),
-          amount =  -100 + $card.data('position') * 10,
-          leftAmountStr,
-          movesArray = ['+=170', '+=85', '+=0', '-=85', '-=170'];
+      var $card = $($(event.target).parents('.card'));
 
-      leftAmountStr = movesArray[position];
+      Trumpster.Animations.playersCardToMiddle($card);
 
-      $card.animate({top: '-=200', left: leftAmountStr});
     }
   });
 
