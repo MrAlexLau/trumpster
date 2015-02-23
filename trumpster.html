@@ -6,9 +6,9 @@
   {{> loadNotification}}
   <button>Start Game!</button>
   <div class="board">
-    <div class="other-player hand">
-      {{#each otherPlayersCards}}
-        {{>  otherPlayer }}
+    <div class="opponent hand">
+      {{#each opponentsCards}}
+        {{>  opponent }}
       {{/each}}
     </div>
     <div class="current-player hand">
@@ -28,7 +28,7 @@
   </span>
 </template>
 
-<template name="otherPlayer">
+<template name="opponent">
   <span class="playingCards simpleCards">
     <!-- <div class="card back">*</div> -->
     <span class="card rank-{{value}} {{suit}}">

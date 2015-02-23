@@ -11,7 +11,7 @@ if (Meteor.isClient) {
         return player1.get().hand;
       }
     },
-    otherPlayersCards: function () {
+    opponentsCards: function () {
       if (player2.get() !== null) {
         return player2.get().hand;
       }
@@ -20,10 +20,17 @@ if (Meteor.isClient) {
 
   Template.currentPlayer.events({
     'click .players-cards.card': function (event) {
-      var $card = $($(event.target).parents('.card'));
+      var $card = $($(event.target).parents('.card')),
+          $opponentsCard;
 
-      Trumpster.Animations.playersCardToMiddle($card);
+      if ($card.length > 0) {
+        $opponentsCard = $('.opponent .card').random();
 
+        Trumpster.Animations.opponentsCardToMiddle($opponentsCard);
+        Trumpster.Animations.playersCardToMiddle($card);
+
+        Trumpster.Animations.showAsWinner($card);
+      }
     }
   });
 
@@ -31,17 +38,27 @@ if (Meteor.isClient) {
     $('.current-player .card').each(function(index) {
       $(this).data('position', index);
     });
+    $('.opponent .card').each(function(index) {
+      $(this).data('position', index);
+    });
   }
 
   Template.body.events({
     'click button': function () {
-      currentGame = new Trumpster.Game();
+      var currentGame = new Trumpster.Game();
+
       currentGame.dealCards();
 
       player1.set(currentGame.players[0]);
       player2.set(currentGame.players[1]);
     }
   });
+
+  Template.body.rendered = function () {
+    $.fn.random = function() {
+      return this.eq(Math.floor(Math.random() * this.length));
+    }
+  };
 
   Template.loadNotification.rendered = function() {
     $('.reloaded').fadeOut(1500);
