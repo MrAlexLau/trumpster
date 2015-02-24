@@ -21,7 +21,7 @@
 
 <template name="currentPlayer">
   <span class="playingCards simpleCards">
-    <span class="players-cards card rank-{{value}} {{suit}}">
+    <span class="players-cards card rank-{{value}} {{suit}}" data-rank="{{value}}">
       <span class="rank">{{value}}</span>
       <span class="suit"></span>
     </span>
@@ -31,7 +31,7 @@
 <template name="opponent">
   <span class="playingCards simpleCards">
     <!-- <div class="card back">*</div> -->
-    <span class="card rank-{{value}} {{suit}}">
+    <span class="card rank-{{value}} {{suit}}" data-rank="{{value}}">
       <span class="rank">{{value}}</span>
       <span class="suit"></span>
     </span>

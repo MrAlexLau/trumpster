@@ -21,7 +21,8 @@ if (Meteor.isClient) {
   Template.currentPlayer.events({
     'click .players-cards.card': function (event) {
       var $card = $($(event.target).parents('.card')),
-          $opponentsCard;
+          $opponentsCard,
+          winningCard;
 
       if ($card.length > 0) {
         $opponentsCard = $('.opponent .card').random();
@@ -29,7 +30,8 @@ if (Meteor.isClient) {
         Trumpster.Animations.opponentsCardToMiddle($opponentsCard);
         Trumpster.Animations.playersCardToMiddle($card);
 
-        Trumpster.Animations.showAsWinner($card);
+        winningCard = Trumpster.RuleMaster.winningCard($card, $opponentsCard);
+        Trumpster.Animations.showAsWinner(winningCard);
       }
     }
   });
