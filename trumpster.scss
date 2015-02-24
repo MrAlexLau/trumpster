@@ -16,7 +16,7 @@ $cardHeight: 100px;
   height: $board-height;
   position: relative;
   padding: $gutter * 2;
-  margin-top: $gutter * 2; /* TODO: replace with a gutter sass var */
+  margin-top: $gutter * 2;
 }
 
 .center-of-board {
