@@ -2,7 +2,7 @@
 
 $gutter: 15px;
 $board-color: #6FBBF5;
-$board-height: 500px;
+$board-height: 600px;
 $cardHeight: 100px;
 
 .reloaded {
@@ -30,17 +30,37 @@ $cardHeight: 100px;
 
 .opponent {
   position: absolute;
-  top: 0;
+  top: $gutter;
 }
 
 .current-player {
-  bottom: 0;
+  bottom: $gutter;
   position: absolute;
 }
 
 .playingCards .card {
   display: inline-block;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 4px;
+  width: 50px;
+}
+
+.hand .card {
+  margin-left: $gutter;
   width: 60px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+.playingCards.simpleCards .card.diams,
+.playingCards.simpleCards .card.clubs,
+.playingCards.simpleCards .card.hearts,
+.playingCards.simpleCards .card.spades {
+  .suit:after {
+  right: 0.25em;
+  }
 }
 
 .playingCards .winning-card {
