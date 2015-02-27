@@ -58,17 +58,28 @@ if (Meteor.isClient) {
             return card.suit == $opponentsCard.data('suit') && card.value == $opponentsCard.data('rank');
           };
 
-          //index1 = player1Hand.indexOf(_.find(player1Hand, player1CardFinder));
-          //if (index1 >= 0) {
-            //player1Hand.splice(index1, 1);
-            //player1.set({ hand: player1Hand });
-          //}
+          index1 = player1Hand.indexOf(_.find(player1Hand, player1CardFinder));
+          if (index1 >= 0) {
+            player1Hand.splice(index1, 1);
+            player1.set({ hand: player1Hand });
+          }
 
-          //index2 = player2Hand.indexOf(_.find(player2Hand, opponentCardFinder));
-          //if (index2 >= 0) {
-            //player2Hand.splice(index2, 1);
-            //player2.set({ hand: player2Hand });
-          //}
+          index2 = player2Hand.indexOf(_.find(player2Hand, opponentCardFinder));
+          if (index2 >= 0) {
+            player2Hand.splice(index2, 1);
+            player2.set({ hand: player2Hand });
+          }
+
+          // center cards
+          var cardWidth = 70,
+              marginWidth = 15;
+
+          numberOfCards = $('.players-cards.card').length - 1;
+
+          totalWidth = (numberOfCards * cardWidth) + ((numberOfCards - 1) * marginWidth);
+
+          $('.hand').css('margin-left', -(totalWidth / 2));
+
         }, 2000);
       }
     }

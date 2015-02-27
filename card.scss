@@ -3,14 +3,12 @@ $gutter: 15px;
 .card {
   background-color: #FFF;
   border-radius: 3px;
-  display: inline-block;
   font-size: 20px;
   font-weight: bold;
   height: 100px;
-  padding: $gutter / 2;
   position: relative;
   text-align: left;
-  width: 60px;
+  width: 70px;
 }
 
 .card.diams,
@@ -43,7 +41,7 @@ $gutter: 15px;
     line-height: 100px;
     position: absolute;
     text-align: center;
-    width: 75px;
+    width: 70px;
 
     &:after {
       font-size: 40px;
@@ -51,4 +49,8 @@ $gutter: 15px;
   }
 }
 
-
+.card .rank {
+  position: absolute;
+  left: $gutter / 2;
+  top: $gutter / 2;
+}

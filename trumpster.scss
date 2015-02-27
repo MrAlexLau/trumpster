@@ -2,7 +2,7 @@
 
 $gutter: 15px;
 $board-color: #6FBBF5;
-$board-height: 600px;
+$board-height: 500px;
 $cardHeight: 100px;
 
 .reloaded {
@@ -16,16 +16,12 @@ $cardHeight: 100px;
   height: $board-height;
   position: relative;
   padding: $gutter * 2;
+  padding-left: 50%;
   margin-top: $gutter * 2;
 }
 
 .center-of-board {
   height: $cardHeight;
-}
-
-.hand {
-  text-align: center;
-  width: 100%;
 }
 
 .opponent {
@@ -38,22 +34,19 @@ $cardHeight: 100px;
   position: absolute;
 }
 
-.playingCards .card {
-  display: inline-block;
-  margin-left: 0;
-  margin-right: 0;
-  padding: 4px;
-  width: 50px;
+.hand {
+  margin-left: -217.5px;
 }
 
 .hand .card {
+  float: left;
   margin-left: $gutter;
-  width: 60px;
 
   &:first-child {
     margin-left: 0;
   }
 }
+
 .playingCards.simpleCards .card.diams,
 .playingCards.simpleCards .card.clubs,
 .playingCards.simpleCards .card.hearts,
@@ -63,7 +56,7 @@ $cardHeight: 100px;
   }
 }
 
-.playingCards .winning-card {
+.winning-card {
   background-color: rgb(221, 255, 221);
 
   &:after {
