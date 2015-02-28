@@ -39,11 +39,11 @@ if (Meteor.isClient) {
       $(this).data('position', index);
     });
 
-        Trumpster.Animations.opponentsCardToMiddle($opponentsCard, numberOfCards);
-        Trumpster.Animations.playersCardToMiddle($card, numberOfCards);
+        Trumpster.CardAnimations.opponentsCardToMiddle($opponentsCard, numberOfCards);
+        Trumpster.CardAnimations.playersCardToMiddle($card, numberOfCards);
 
         winningCard = Trumpster.RuleMaster.winningCard($card, $opponentsCard);
-        Trumpster.Animations.showAsWinner(winningCard);
+        Trumpster.CardAnimations.showAsWinner(winningCard);
 
 
         setTimeout(function () {
@@ -70,16 +70,7 @@ if (Meteor.isClient) {
             player2.set({ hand: player2Hand });
           }
 
-          // center cards
-          var cardWidth = 70,
-              marginWidth = 15;
-
-          numberOfCards = $('.players-cards.card').length - 1;
-
-          totalWidth = (numberOfCards * cardWidth) + ((numberOfCards - 1) * marginWidth);
-
-          $('.hand').css('margin-left', -(totalWidth / 2));
-
+          Trumpster.BoardAnimations.centerCardHands($('.players-cards.card').length - 1);
         }, 2000);
       }
     }
