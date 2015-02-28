@@ -6,7 +6,9 @@ $board-height: 500px;
 $cardHeight: 100px;
 
 .reloaded {
-  text-align: center;
+  color: red;
+  right: 15px;
+  position: absolute;
 }
 
 .board {
@@ -52,7 +54,7 @@ $cardHeight: 100px;
 .playingCards.simpleCards .card.hearts,
 .playingCards.simpleCards .card.spades {
   .suit:after {
-  right: 0.25em;
+    right: 0.25em;
   }
 }
 

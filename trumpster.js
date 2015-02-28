@@ -23,7 +23,7 @@ if (Meteor.isClient) {
       var $card = $($(event.target).parents('.card'));
 
       if ($card.length > 0) {
-        ViewHelper.playCard($card);
+        ViewHelper.Actions.playCard($card);
       }
     }
   });
