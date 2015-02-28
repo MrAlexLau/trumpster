@@ -1,0 +1,56 @@
+$gutter: 15px;
+
+.card {
+  background-color: #FFF;
+  border-radius: 3px;
+  font-size: 20px;
+  font-weight: bold;
+  height: 100px;
+  position: relative;
+  text-align: left;
+  width: 70px;
+}
+
+.card.diams,
+.card.hearts {
+  color: red;
+}
+
+.card.clubs .suit:after {
+  content: '\2663';
+}
+
+.card.spades .suit:after {
+  content: '\2660';
+}
+
+.card.hearts .suit:after {
+  content: '\2665';
+}
+
+.card.diams .suit:after {
+  content: '\2666';
+}
+
+.card.clubs,
+.card.spades,
+.card.hearts,
+.card.diams {
+  .suit {
+    left: 0;
+    line-height: 100px;
+    position: absolute;
+    text-align: center;
+    width: 70px;
+
+    &:after {
+      font-size: 40px;
+    }
+  }
+}
+
+.card .rank {
+  position: absolute;
+  left: $gutter / 2;
+  top: $gutter / 2;
+}

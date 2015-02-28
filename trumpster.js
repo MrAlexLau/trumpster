@@ -1,49 +1,32 @@
 Cards = new Mongo.Collection('cards');
-player1 = Blaze.ReactiveVar(null);
-player2 = Blaze.ReactiveVar(null);
+player1Hand = Blaze.ReactiveVar(null);
+player2Hand = Blaze.ReactiveVar(null);
 
 if (Meteor.isClient) {
   Meteor.subscribe("cards");
 
   Template.body.helpers({
     currentPlayersCards: function () {
-      if (player1.get() !== null) {
-        return player1.get().hand;
+      if (player1Hand.get() !== null) {
+        return player1Hand.get();
       }
     },
     opponentsCards: function () {
-      if (player2.get() !== null) {
-        return player2.get().hand;
+      if (player2Hand.get() !== null) {
+        return player2Hand.get();
       }
-    }
+    },
   });
 
   Template.currentPlayer.events({
     'click .players-cards.card': function (event) {
-      var $card = $($(event.target).parents('.card')),
-          $opponentsCard,
-          winningCard;
+      var $card = $($(event.target).parents('.card'));
 
       if ($card.length > 0) {
-        $opponentsCard = $('.opponent .card').random();
-
-        Trumpster.Animations.opponentsCardToMiddle($opponentsCard);
-        Trumpster.Animations.playersCardToMiddle($card);
-
-        winningCard = Trumpster.RuleMaster.winningCard($card, $opponentsCard);
-        Trumpster.Animations.showAsWinner(winningCard);
+        ViewHelper.playCard($card);
       }
     }
   });
-
-  Template.currentPlayer.rendered = function() {
-    $('.current-player .card').each(function(index) {
-      $(this).data('position', index);
-    });
-    $('.opponent .card').each(function(index) {
-      $(this).data('position', index);
-    });
-  }
 
   Template.body.events({
     'click button': function () {
@@ -51,8 +34,8 @@ if (Meteor.isClient) {
 
       currentGame.dealCards();
 
-      player1.set(currentGame.players[0]);
-      player2.set(currentGame.players[1]);
+      player1Hand.set(currentGame.players[0].hand);
+      player2Hand.set(currentGame.players[1].hand);
     }
   });
 
