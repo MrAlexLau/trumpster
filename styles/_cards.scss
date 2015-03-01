@@ -1,0 +1,83 @@
+.card {
+  background-color: #FFF;
+  border-radius: 3px;
+  font-size: $base-font-size;
+  font-weight: bold;
+  height: $card-height-mobile;
+  position: relative;
+  text-align: left;
+  width: $card-width-mobile;
+
+  @media (min-width: $medium-screen) {
+    font-size: $base-font-size * 1.5;
+    height: $card-height-desktop;
+    width: $card-width-desktop;
+  }
+}
+
+.card.diams,
+.card.hearts {
+  color: red;
+}
+
+.card.clubs .suit:after {
+  content: '\2663';
+}
+
+.card.spades .suit:after {
+  content: '\2660';
+}
+
+.card.hearts .suit:after {
+  content: '\2665';
+}
+
+.card.diams .suit:after {
+  content: '\2666';
+}
+
+.card.clubs,
+.card.spades,
+.card.hearts,
+.card.diams {
+  .suit {
+    left: 0;
+    line-height: $card-height-mobile;
+    position: absolute;
+    text-align: center;
+    width: $card-width-mobile;
+
+    &:after {
+      font-size: $base-font-size * 1.5;
+    }
+
+    @media (min-width: $medium-screen) {
+      height: $card-height-desktop;
+      line-height: $card-height-desktop;
+      width: $card-width-desktop;
+
+      &:after {
+        font-size: $base-font-size * 2.5;
+      }
+    }
+  }
+}
+
+.card .rank {
+  left: $gutter / 2;
+  position: absolute;
+  top: $base-line-height / 2;
+}
+
+.winning-card {
+  background-color: rgb(221, 255, 221);
+
+  &:after {
+    color: green;
+    content: "\2713";
+    font-size: 30px;
+    position: absolute;
+    right: 5px;
+    top: 0;
+  }
+}

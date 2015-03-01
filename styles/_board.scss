@@ -1,0 +1,65 @@
+.board {
+  background-color: #1D5223;
+  border: 2px solid;
+  border-radius: 25px;
+  display: none;
+  height: $board-height;
+  margin-top: $base-line-height;
+  position: relative;
+
+
+  .inner-board {
+    padding-left: 50%;
+    width: 100%;
+  }
+}
+
+&.player-name {
+  color: white;
+  width: 100%;
+  text-align: center;
+}
+
+.opponent {
+  position: absolute;
+
+  &.player-name {
+    top: $base-line-height;
+  }
+
+  &.hand {
+    top: $base-line-height * 3;
+  }
+}
+
+.current-player {
+  bottom: $base-line-height * 3;
+  position: absolute;
+
+  &.player-name {
+    bottom: $base-line-height;
+  }
+
+  &.hand {
+    bottom: $base-line-height * 3;
+  }
+}
+
+.hand {
+  // offset the hand by half of its width
+  // in order to center it on the board (on the x axis)
+  margin-left: -((($gutter * ($default-num-cards - 1)) + ($card-width-mobile * $default-num-cards)) / 2);
+
+  @media (min-width: $medium-screen) {
+    margin-left: -((($gutter * ($default-num-cards - 1)) + ($card-width-desktop * $default-num-cards)) / 2);
+  }
+}
+
+.hand .card {
+  float: left;
+  margin-left: $gutter;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}

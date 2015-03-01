@@ -1,0 +1,23 @@
+.menu {
+  padding-top: $base-line-height * 4;
+  text-align: center;
+  width: 100%;
+}
+
+.start-game {
+  border: 3px solid #9E951B;
+  border-radius: 15px;
+  background-color: #FBFF8F;
+  display: block;
+  margin: auto;
+  padding: $gutter;
+  text-decoration: none;
+  width: 150px;
+}
+
+.game-over {
+  color: #FFF;
+  display: none;
+  margin-top: $base-line-height * 10;
+  text-align: center;
+}
