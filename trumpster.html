@@ -4,18 +4,31 @@
 
 <body>
   {{> loadNotification}}
-  <button>Start Game!</button>
+
+  <div class="menu">
+    <a class="start-game" href="#">Start Game</a>
+  </div>
+
   <div class="board">
-    <div class="opponent hand">
-      {{#each opponentsCards}}
-        {{>  opponent }}
-      {{/each}}
+    <div class="opponent player-name">
+      Computer - score {{computerScore}}
     </div>
-    <div class="current-player hand">
-      {{#each currentPlayersCards}}
-        {{> currentPlayer}}
-      {{/each}}
+
+    <div class="inner-board">
+      <div class="opponent hand">
+        {{#each opponentsCards}}
+          {{> opponent }}
+        {{/each}}
       </div>
+      <div class="current-player hand">
+        {{#each currentPlayersCards}}
+          {{> currentPlayer}}
+        {{/each}}
+      </div>
+    </div>
+    <div class="current-player player-name">
+      You - score {{playerScore}}
+    </div>
   </div>
 </body>
 

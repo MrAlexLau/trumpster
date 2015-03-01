@@ -1,19 +1,27 @@
 Cards = new Mongo.Collection('cards');
-player1Hand = Blaze.ReactiveVar(null);
-player2Hand = Blaze.ReactiveVar(null);
+playersHand = Blaze.ReactiveVar(null);
+playersScore = Blaze.ReactiveVar(0);
+opponentsScore = Blaze.ReactiveVar(0);
+opponentsHand = Blaze.ReactiveVar(null);
 
 if (Meteor.isClient) {
   Meteor.subscribe("cards");
 
   Template.body.helpers({
+    computerScore: function () {
+      return opponentsScore.get();
+    },
+    playerScore: function () {
+      return playersScore.get();
+    },
     currentPlayersCards: function () {
-      if (player1Hand.get() !== null) {
-        return player1Hand.get();
+      if (playersHand.get() !== null) {
+        return playersHand.get();
       }
     },
     opponentsCards: function () {
-      if (player2Hand.get() !== null) {
-        return player2Hand.get();
+      if (opponentsHand.get() !== null) {
+        return opponentsHand.get();
       }
     },
   });
@@ -29,13 +37,17 @@ if (Meteor.isClient) {
   });
 
   Template.body.events({
-    'click button': function () {
+    'click .start-game': function (e) {
+      e.preventDefault();
+
       var currentGame = new Trumpster.Game();
 
       currentGame.dealCards();
 
-      player1Hand.set(currentGame.players[0].hand);
-      player2Hand.set(currentGame.players[1].hand);
+      $('.board').show();
+      $('.menu').hide();
+      playersHand.set(currentGame.players[0].hand);
+      opponentsHand.set(currentGame.players[1].hand);
     }
   });
 

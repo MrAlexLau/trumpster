@@ -2,8 +2,26 @@
 
 $gutter: 15px;
 $board-color: #6FBBF5;
-$board-height: 500px;
+$board-height: 550px;
 $cardHeight: 100px;
+
+body {
+  background-image: url("images/crossword.png");
+}
+
+.menu {
+  padding-top: $gutter * 4;
+  text-align: center;
+  width: 100%;
+
+  .start-game {
+    border: 3px solid #9E951B;
+    border-radius: 15px;
+    background-color: #FBFF8F;
+    padding: $gutter;
+    text-decoration: none;
+  }
+}
 
 .reloaded {
   color: red;
@@ -12,32 +30,58 @@ $cardHeight: 100px;
 }
 
 .board {
-  background-color: #6FBBF5;
+  background-color: #1D5223;
   border: 2px solid;
   border-radius: 25px;
+  display:none;
   height: $board-height;
+  margin-top: $gutter;
   position: relative;
-  padding: $gutter * 2;
-  padding-left: 50%;
-  margin-top: $gutter * 2;
+
+
+  .inner-board {
+    padding-left: 50%;
+    width: 100%;
+  }
 }
 
 .center-of-board {
   height: $cardHeight;
 }
 
+&.player-name {
+  color: white;
+  width: 100%;
+  text-align: center;
+}
+
 .opponent {
   position: absolute;
-  top: $gutter;
+
+  &.player-name {
+    top: $gutter;
+  }
+
+  &.hand {
+    top: $gutter * 3;
+  }
 }
 
 .current-player {
-  bottom: $gutter;
+  bottom: $gutter * 3;
   position: absolute;
+
+  &.player-name {
+    bottom: $gutter;
+  }
+
+  &.hand {
+    bottom: $gutter * 3;
+  }
 }
 
 .hand {
-  margin-left: -217.5px;
+  margin-left: -205px;
 }
 
 .hand .card {
