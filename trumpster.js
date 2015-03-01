@@ -34,10 +34,12 @@ if (Meteor.isClient) {
 
   Template.currentPlayer.events({
     'click .players-cards.card': function (event) {
-      var $card = $($(event.target).parents('.card'));
+      if (!ViewHelper.Actions.actionsLock) {
+        var $card = $($(event.target).parents('.card'));
 
-      if ($card.length > 0) {
-        ViewHelper.Actions.playCard($card);
+        if ($card.length > 0) {
+          ViewHelper.Actions.playCard($card);
+        }
       }
     }
   });
