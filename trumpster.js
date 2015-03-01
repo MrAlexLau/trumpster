@@ -58,6 +58,11 @@ if (Meteor.isClient) {
   Template.loadNotification.rendered = function() {
     $('.reloaded').fadeOut(1500);
   }
+
+  Template.currentPlayer.rendered = function() {
+    // remove any styles set in the previous round
+    $('.hand').removeAttr('style');
+  }
 }
 
 if (Meteor.isServer) {
