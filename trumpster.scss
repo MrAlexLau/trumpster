@@ -13,14 +13,24 @@ body {
   padding-top: $gutter * 4;
   text-align: center;
   width: 100%;
+}
 
-  .start-game {
-    border: 3px solid #9E951B;
-    border-radius: 15px;
-    background-color: #FBFF8F;
-    padding: $gutter;
-    text-decoration: none;
-  }
+.start-game {
+  border: 3px solid #9E951B;
+  border-radius: 15px;
+  background-color: #FBFF8F;
+  display: block;
+  margin: auto;
+  padding: $gutter;
+  text-decoration: none;
+  width: 150px;
+}
+
+.game-over {
+  color: #FFF;
+  display: none;
+  margin-top: $gutter * 10;
+  text-align: center;
 }
 
 .reloaded {

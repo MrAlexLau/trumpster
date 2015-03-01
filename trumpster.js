@@ -3,11 +3,17 @@ playersHand = Blaze.ReactiveVar(null);
 playersScore = Blaze.ReactiveVar(0);
 opponentsScore = Blaze.ReactiveVar(0);
 opponentsHand = Blaze.ReactiveVar(null);
+winnerLabel = Blaze.ReactiveVar(null);
 
 if (Meteor.isClient) {
   Meteor.subscribe("cards");
 
   Template.body.helpers({
+    winner: function () {
+      if (winnerLabel.get() !== null) {
+        return winnerLabel.get();
+      }
+    },
     computerScore: function () {
       return opponentsScore.get();
     },
@@ -39,15 +45,7 @@ if (Meteor.isClient) {
   Template.body.events({
     'click .start-game': function (e) {
       e.preventDefault();
-
-      var currentGame = new Trumpster.Game();
-
-      currentGame.dealCards();
-
-      $('.board').show();
-      $('.menu').hide();
-      playersHand.set(currentGame.players[0].hand);
-      opponentsHand.set(currentGame.players[1].hand);
+      ViewHelper.Actions.startGame();
     }
   });
 
