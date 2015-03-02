@@ -1,14 +1,17 @@
 $base-line-height: 15px;
 $base-font-size: 16px;
 $board-color: #6FBBF5;
-$board-height: 550px;
 $default-num-cards: 5;
 $gutter: 15px;
 
+$board-height-mobile: 500px;
+$board-height-desktop: 550px;
+
+
 // card dimensions
-$card-height-mobile: 75px;
+$card-height-mobile: 65px;
 $card-height-desktop: 100px;
-$card-width-mobile: 50px;
+$card-width-mobile: 40px;
 $card-width-desktop: 70px;
 
 // viewports

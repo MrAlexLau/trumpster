@@ -3,14 +3,18 @@
   border: 2px solid;
   border-radius: 25px;
   display: none;
-  height: $board-height;
+  height: $board-height-mobile;
   margin-top: $base-line-height;
   position: relative;
-
 
   .inner-board {
     padding-left: 50%;
     width: 100%;
+  }
+
+
+  @media (min-width: $medium-screen) {
+    height: $board-height-desktop;
   }
 }
 

@@ -56,8 +56,8 @@ if (Meteor.isClient) {
       return this.eq(Math.floor(Math.random() * this.length));
     }
 
-    ViewHelper.Config.initialize();
     ViewHelper.BoardAnimations.initialize();
+    ViewHelper.Config.initialize();
   };
 
   Template.loadNotification.rendered = function() {
