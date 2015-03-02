@@ -55,6 +55,9 @@ if (Meteor.isClient) {
     $.fn.random = function() {
       return this.eq(Math.floor(Math.random() * this.length));
     }
+
+    ViewHelper.Config.initialize();
+    ViewHelper.BoardAnimations.initialize();
   };
 
   Template.loadNotification.rendered = function() {
