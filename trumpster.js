@@ -1,4 +1,5 @@
-Cards = new Mongo.Collection('cards');
+Cards = new Mongo.Collection("cards");
+
 playersHand = Blaze.ReactiveVar(null);
 playersScore = Blaze.ReactiveVar(0);
 opponentsScore = Blaze.ReactiveVar(0);
@@ -68,6 +69,10 @@ if (Meteor.isClient) {
     // remove any styles set in the previous round
     $('.hand').removeAttr('style');
   }
+
+  Accounts.ui.config({
+    passwordSignupFields: 'USERNAME_AND_OPTIONAL_EMAIL'
+  });
 }
 
 if (Meteor.isServer) {

@@ -8,3 +8,5 @@ meteor-platform
 insecure
 fourseven:scss
 fortawesome:fontawesome
+accounts-ui
+accounts-password
