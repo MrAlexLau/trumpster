@@ -1,3 +1,4 @@
+Games = new Mongo.Collection("games");
 Cards = new Mongo.Collection("cards");
 
 playersHand = Blaze.ReactiveVar(null);
@@ -8,6 +9,7 @@ winnerLabel = Blaze.ReactiveVar(null);
 
 if (Meteor.isClient) {
   Meteor.subscribe("cards");
+  Meteor.subscribe("games");
 
   Template.body.helpers({
     winner: function () {
@@ -80,6 +82,10 @@ if (Meteor.isServer) {
     return Cards.find();
   });
 
+  Meteor.publish("games", function () {
+    return Games.find();
+  });
+
   Meteor.startup(function () {
     // // uncomment to delete previous values
     // coll = Cards.find().fetch();
@@ -87,14 +93,14 @@ if (Meteor.isServer) {
     //   Cards.remove(card._id);
     // });
 
-    // seed the cards collection
-    if (Cards.find().count() == 0) {
-      _.each(Trumpster.CardHelper.VALUES, function(value) {
-        _.each(Trumpster.CardHelper.SUITS, function(suit) {
-          Cards.insert({ suit: suit, value: value });
-        });
-      });
-    }
+    // // seed the cards collection
+    // if (Cards.find().count() == 0) {
+    //   _.each(Trumpster.CardHelper.VALUES, function(value) {
+    //     _.each(Trumpster.CardHelper.SUITS, function(suit) {
+    //       Cards.insert({ suit: suit, value: value });
+    //     });
+    //   });
+    // }
 
 
   });
